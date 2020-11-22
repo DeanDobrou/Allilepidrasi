@@ -30,9 +30,8 @@ public class ErgasiaPDA extends javax.swing.JFrame {
     
     DefaultTableModel model;
     String item;
-    String trap;
     int price;
-    int trapezi;
+    String trapezi;
     
     
     
@@ -285,8 +284,8 @@ public class ErgasiaPDA extends javax.swing.JFrame {
             try {
                   FileWriter fw = new FileWriter(fileToSave);
                 BufferedWriter bw = new BufferedWriter(fw);
-                for (int i = 0; i jTable1.getRowCount(); i++) {
-                    for (int j = 0; j  jTable1.getColumnCount(); j++) {
+                for (int i = 0; i<jTable1.getRowCount(); i++) {
+                    for (int j = 0; j<jTable1.getColumnCount(); j++) {
                         //write
                         bw.write(jTable1.getValueAt(i, j).toString()+",");
                     }
@@ -305,7 +304,6 @@ public class ErgasiaPDA extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         int index = kafesComboBox.getSelectedIndex();
-        int index2 = trapeziajList .getSelectedIndex();
         if(index == 0){
             price = 3;
             item = "Freddo espresso";
@@ -319,21 +317,15 @@ public class ErgasiaPDA extends javax.swing.JFrame {
             item = "Frapes";
         }
         
-        if(index2 == 0){
-            trap = "1";
-        }
-        else if(index2 == 1){
-            trap = "2";
-        }
-        else if(index2 == 2){
-            trap = "3";
-        }
+        
+        String selectTrapezi = trapeziajList.getSelectedValue().toString();
+        
         int qty = Integer.parseInt(txtqty.getValue().toString());
         int total = qty * price;
         
         model = (DefaultTableModel)jTable1.getModel();
         model.addRow(new Object[]{
-                trapezi,
+                selectTrapezi,
                 item,
                 price,
                 qty,
